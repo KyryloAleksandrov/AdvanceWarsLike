@@ -15,9 +15,15 @@ public class ProjectContext
         }
     }
     
+    public IConfigService ConfigService {get; private set;}
 
-    public void Initialize()
+    public IMapFunctionalService MapFunctionalService {get; private set;}
+
+    public void Initialize(MapConfig mapConfig)
     {
+        ConfigService = new ConfigService(mapConfig);
+
+        MapFunctionalService = new MapFunctionalService(ConfigService);
         Debug.Log("Loaded successfully");
     }
 }

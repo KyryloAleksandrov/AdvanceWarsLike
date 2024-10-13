@@ -5,10 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Boot : MonoBehaviour
 {
+    [SerializeField] private MapConfig MapConfig;
 
     void Awake()
     {
-        ProjectContext.Instance.Initialize();
+        ProjectContext.Instance.Initialize(MapConfig);
     }
 
     private IEnumerator Start()

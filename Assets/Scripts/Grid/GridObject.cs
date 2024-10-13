@@ -2,17 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GridObject : MonoBehaviour
+public class GridObject
 {
-    // Start is called before the first frame update
-    void Start()
+    private GridSystem gridSystem;
+    private GridPosition gridPosition;
+
+    public GridObject(GridSystem gridSystem, GridPosition gridPosition)
     {
-        
+        this.gridSystem = gridSystem;
+        this.gridPosition = gridPosition;
     }
 
-    // Update is called once per frame
-    void Update()
+    public GridPosition GetGridPosition()
     {
-        
+        return gridPosition;
+    }
+
+    public override string ToString()
+    {
+        return gridPosition.ToString();
     }
 }
