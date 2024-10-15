@@ -18,7 +18,7 @@ public class MapGridTileService : IMapGridTileService
 
     public MapGridTileService(IConfigService configService, IMapFunctionalService mapFunctionalService)
     {
-        var MapData = configService.MapData;
+        var MapData = configService.MapData;    //TODO - create a separate config that specifies tiles
         tilePrefab = MapData.tilePrefab;
 
         //gridSystem = new GridSystem<GridTile>(MapData.width, MapData.height, MapData.cellSize,(GridSystem<GridTile> g, GridPosition gridPosition) => new GridTile(g, gridPosition));
