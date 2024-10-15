@@ -16,11 +16,14 @@ public class MapGridTileService : IMapGridTileService
     public GridSystem<GridTile> gridSystem {get;}
     public Transform tilePrefab {get;}
 
-    public MapGridTileService(IConfigService configService)
+    public MapGridTileService(IConfigService configService, IMapFunctionalService mapFunctionalService)
     {
         var MapData = configService.MapData;
-        gridSystem = new GridSystem<GridTile>(MapData.width, MapData.height, MapData.cellSize,(GridSystem<GridTile> g, GridPosition gridPosition) => new GridTile(gridPosition));
         tilePrefab = MapData.tilePrefab;
+
+        //gridSystem = new GridSystem<GridTile>(MapData.width, MapData.height, MapData.cellSize,(GridSystem<GridTile> g, GridPosition gridPosition) => new GridTile(g, gridPosition));
+        gridSystem = mapFunctionalService.CreateGridSystem<GridTile>((GridSystem<GridTile> g, GridPosition gridPosition) => new GridTile(g, gridPosition));
+        
     }
 
     public void InitializeTiles()

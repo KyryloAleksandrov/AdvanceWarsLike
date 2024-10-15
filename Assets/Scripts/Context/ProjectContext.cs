@@ -25,7 +25,7 @@ public class ProjectContext
         ConfigService = new ConfigService(mapConfig);
 
         MapFunctionalService = new MapFunctionalService(ConfigService);
-        MapGridTileService = new MapGridTileService(ConfigService);
+        MapGridTileService = new MapGridTileService(ConfigService, MapFunctionalService);
         Debug.Log("Loaded successfully");
     }
 }
