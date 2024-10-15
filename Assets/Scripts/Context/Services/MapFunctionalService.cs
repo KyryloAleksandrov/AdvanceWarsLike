@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IMapFunctionalService
 {
-    GridSystem gridSystem {get;}
+    GridSystem<GridObject> gridSystem {get;}
     Transform cellOutlinePrefab {get;}
     Transform coordinatesPrefab {get;}
 
@@ -13,14 +13,14 @@ public interface IMapFunctionalService
 
 public class MapFunctionalService : IMapFunctionalService
 {
-    public GridSystem gridSystem {get;}
+    public GridSystem<GridObject> gridSystem {get;}
     public Transform cellOutlinePrefab {get;}
     public Transform coordinatesPrefab {get;}
 
     public MapFunctionalService(IConfigService ConfigService)
     {
         var MapData = ConfigService.MapData;
-        gridSystem = new GridSystem(MapData.width, MapData.height, MapData.cellSize);
+        gridSystem = new GridSystem<GridObject>(MapData.width, MapData.height, MapData.cellSize, (GridSystem<GridObject> g, GridPosition gridPosition) => new GridObject(g, gridPosition));
         cellOutlinePrefab = ConfigService.MapData.cellOutlinePrefab;
         coordinatesPrefab = ConfigService.MapData.coordinatesPrefab;
     }
