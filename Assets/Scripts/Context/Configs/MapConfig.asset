@@ -18,3 +18,4 @@ MonoBehaviour:
     cellSize: 2
     cellOutlinePrefab: {fileID: 1966567813207495154, guid: 5e93452773279664dbf78e45652171b2, type: 3}
     coordinatesPrefab: {fileID: 1732626009384912535, guid: 78fa9d44988739e47ba6b2a9e94f7a8d, type: 3}
+    tilePrefab: {fileID: 254088783666672365, guid: 6a0f6f5bb0ef81c42bf00a034c515ed5, type: 3}

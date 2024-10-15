@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IMapFunctionalService
+public interface IMapFunctionalService  //TODO - rename to MapGridSetupService
 {
     GridSystem<GridObject> gridSystem {get;}
     Transform cellOutlinePrefab {get;}
     Transform coordinatesPrefab {get;}
 
-    void InitialzieGrid();
+    void InitializeGrid();
 }
 
 public class MapFunctionalService : IMapFunctionalService
@@ -25,7 +25,7 @@ public class MapFunctionalService : IMapFunctionalService
         coordinatesPrefab = ConfigService.MapData.coordinatesPrefab;
     }
 
-    public void InitialzieGrid()
+    public void InitializeGrid()
     {
         Debug.Log("Initializing Grid");
         GridObject[,] gridObjectArray = gridSystem.getGridObjectArray();

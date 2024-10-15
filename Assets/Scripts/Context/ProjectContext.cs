@@ -18,12 +18,14 @@ public class ProjectContext
     public IConfigService ConfigService {get; private set;}
 
     public IMapFunctionalService MapFunctionalService {get; private set;}
+    public IMapGridTileService MapGridTileService {get; private set;}
 
     public void Initialize(MapConfig mapConfig)
     {
         ConfigService = new ConfigService(mapConfig);
 
         MapFunctionalService = new MapFunctionalService(ConfigService);
+        MapGridTileService = new MapGridTileService(ConfigService);
         Debug.Log("Loaded successfully");
     }
 }

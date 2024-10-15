@@ -19,4 +19,5 @@ public struct MapData
 
     public Transform cellOutlinePrefab;
     public Transform coordinatesPrefab;
+    public Transform tilePrefab;
 }
