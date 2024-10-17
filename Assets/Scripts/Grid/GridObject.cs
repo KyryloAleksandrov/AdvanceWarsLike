@@ -6,6 +6,7 @@ public class GridObject
 {
     private GridSystem<GridObject> gridSystem;
     private GridPosition gridPosition;
+    private GridOutline gridOutline;
 
     public GridObject(GridSystem<GridObject> gridSystem, GridPosition gridPosition)
     {
@@ -18,8 +19,20 @@ public class GridObject
         return gridPosition;
     }
 
+    public GridOutline GetGridOutline()
+    {
+        return gridOutline;
+    }
+
+    public void SetGridOutline(GridOutline gridOutline)
+    {
+        this.gridOutline = gridOutline;
+    }
+
     public override string ToString()
     {
         return gridPosition.ToString();
     }
+
+    
 }

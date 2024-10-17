@@ -49,6 +49,18 @@ public class GridSystem<TGridObject>
         return gridObjectArray;
     }
 
+    public bool IsInBounds(GridPosition gridPosition)
+    {
+        if(gridPosition.x >= 0 && gridPosition.x < width && gridPosition.z >= 0 && gridPosition.z < height)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void DisplayCoordinates(Transform coordinatesPrefab)
     {
         for (int x = 0; x < width; x++){

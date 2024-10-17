@@ -47,6 +47,12 @@ public class MapFunctionalService : IMapFunctionalService
             {
                 GridPosition gridPosition = gridObjectArray[x, z].GetGridPosition();
                 Transform cellOutlineTransform = GameObject.Instantiate(cellOutlinePrefab, gridSystem.GetWorldPosition(gridPosition), Quaternion.identity);
+
+                GridOutline gridOutline = cellOutlineTransform.GetComponent<GridOutline>();
+                GridObject gridObject = gridSystem.GetGridObject(gridPosition);
+                
+                gridOutline.SetGridObject(gridObject);
+                gridObject.SetGridOutline(gridOutline);
             }
         }
 
