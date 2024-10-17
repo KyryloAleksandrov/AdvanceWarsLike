@@ -20,12 +20,16 @@ public class ProjectContext
     public IMapFunctionalService MapFunctionalService {get; private set;}
     public IMapGridTileService MapGridTileService {get; private set;}
 
+    public IUnitService UnitService {get; private set;}
+
     public void Initialize(MapConfig mapConfig)
     {
         ConfigService = new ConfigService(mapConfig);
 
         MapFunctionalService = new MapFunctionalService(ConfigService);
         MapGridTileService = new MapGridTileService(ConfigService, MapFunctionalService);
+
+        UnitService = new UnitService(MapFunctionalService);
         Debug.Log("Loaded successfully");
     }
 }

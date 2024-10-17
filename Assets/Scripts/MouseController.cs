@@ -5,10 +5,16 @@ using UnityEngine.EventSystems;
 
 public class MouseController : MonoBehaviour
 {
+    private static MouseController Instance;
     [SerializeField] private LayerMask cellGridLayerMask;
     private GridSystem<GridObject> gridSystem;
     private GridOutline lastGridVisual;
 
+
+    private void Awake()
+    {
+        Instance = this;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +30,13 @@ public class MouseController : MonoBehaviour
         }
         
         HighlightOnHover(GetFirstLayerMask());
+    }
+
+    public static Vector3 GetWorldPosition()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, Instance.cellGridLayerMask);
+        return raycastHit.point;
     }
 
     public LayerMask GetFirstLayerMask()

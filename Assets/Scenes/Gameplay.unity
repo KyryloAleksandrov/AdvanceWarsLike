@@ -362,6 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2117034eb03a53149b87f266b0111879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  unitPrototype: {fileID: 7054281858149059491, guid: 8103180c50ee52144952d3e39833fe59, type: 3}
 --- !u!4 &849360465
 Transform:
   m_ObjectHideFlags: 0
@@ -720,8 +721,8 @@ SceneRoots:
   m_Roots:
   - {fileID: 963194228}
   - {fileID: 705507995}
-  - {fileID: 849360465}
   - {fileID: 416010801}
   - {fileID: 334593549}
   - {fileID: 1199484013}
   - {fileID: 1708938222}
+  - {fileID: 849360465}
