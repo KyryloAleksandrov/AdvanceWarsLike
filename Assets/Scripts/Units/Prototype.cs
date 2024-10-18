@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class Prototype : MonoBehaviour
 {
     private Vector3 targetPosition;
     private float moveSpeed = 5f;
+    private float rotationSpeed = 10f;
     private float stoppingDistance = 0.1f;
     // Start is called before the first frame update
     void Start()
@@ -18,7 +20,13 @@ public class Prototype : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
+            
             Vector3 moveDirection = (targetPosition - transform.position).normalized;
+
+            
+            transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotationSpeed);
+            
+            
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
         }
 
