@@ -10,6 +10,7 @@ public class GameMaster : MonoBehaviour
 
     private IMapFunctionalService mapFunctionalService;
     private IMapGridTileService mapGridTileService;
+    private IPathfindingService pathfindingService;
 
     private IUnitService unitService;
 
@@ -24,6 +25,9 @@ public class GameMaster : MonoBehaviour
 
         mapFunctionalService = ProjectContext.Instance.MapFunctionalService;
         mapGridTileService = ProjectContext.Instance.MapGridTileService;
+        pathfindingService = ProjectContext.Instance.PathfindingService;
+        
+
         unitService = ProjectContext.Instance.UnitService;
     }
     // Start is called before the first frame update
@@ -31,6 +35,8 @@ public class GameMaster : MonoBehaviour
     {
         mapFunctionalService.InitializeGrid();
         mapGridTileService.InitializeTiles();
+        pathfindingService.InitializePathfinding();
+
 
         unitService.SpawnUnit(new GridPosition(0, 0), unitPrototype);
     }

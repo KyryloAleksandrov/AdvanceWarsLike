@@ -19,6 +19,7 @@ public class ProjectContext
 
     public IMapFunctionalService MapFunctionalService {get; private set;}
     public IMapGridTileService MapGridTileService {get; private set;}
+    public IPathfindingService PathfindingService {get; private set;}
 
     public IUnitService UnitService {get; private set;}
 
@@ -28,6 +29,7 @@ public class ProjectContext
 
         MapFunctionalService = new MapFunctionalService(ConfigService);
         MapGridTileService = new MapGridTileService(ConfigService, MapFunctionalService);
+        PathfindingService = new PathfindingService(ConfigService, MapFunctionalService);
 
         UnitService = new UnitService(MapFunctionalService);
         Debug.Log("Loaded successfully");

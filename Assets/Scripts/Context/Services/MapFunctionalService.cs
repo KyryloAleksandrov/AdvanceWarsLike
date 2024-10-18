@@ -56,7 +56,7 @@ public class MapFunctionalService : IMapFunctionalService
             }
         }
 
-        gridSystem.DisplayCoordinates(coordinatesPrefab);
+        //gridSystem.DisplayCoordinates(coordinatesPrefab);
     }
     public GridSystem<T> CreateGridSystem<T>(Func<GridSystem<T>, GridPosition, T> createGridObject)
     {

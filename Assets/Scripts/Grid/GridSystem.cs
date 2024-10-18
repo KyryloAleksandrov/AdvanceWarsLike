@@ -69,7 +69,7 @@ public class GridSystem<TGridObject>
                 Transform coordinates = GameObject.Instantiate(coordinatesPrefab, GetWorldPosition(gridPosition), Quaternion.identity);
 
                 GridDebugObject grodDebugObject = coordinates.GetComponent<GridDebugObject>();
-                grodDebugObject.SetGridObject(GetGridObject(gridPosition) as GridObject);   //TODO - remove forced cast in future
+                grodDebugObject.SetGridObject(GetGridObject(gridPosition)); 
             }
         }
     }
