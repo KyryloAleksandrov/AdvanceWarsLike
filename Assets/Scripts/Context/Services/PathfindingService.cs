@@ -103,10 +103,13 @@ public class PathfindingService : IPathfindingService
     public int CalculateDistance(GridPosition gridPositionA, GridPosition gridPositionB)
     {
         GridPosition gridPositionDistance = gridPositionA - gridPositionB;
-        int xDistance = Mathf.Abs(gridPositionDistance.x);
+        /*int xDistance = Mathf.Abs(gridPositionDistance.x);
         int zDistance = Mathf.Abs(gridPositionDistance.z);
         int remaining = Mathf.Abs(xDistance - zDistance);
-        return MOVE_DIAGONAL_COST * Mathf.Min(xDistance, zDistance) + MOVE_STRAIGHT_COST * remaining;
+        return MOVE_DIAGONAL_COST * Mathf.Min(xDistance, zDistance) + MOVE_STRAIGHT_COST * remaining;*/
+        int distance = Mathf.Abs(gridPositionDistance.x) + Mathf.Abs(gridPositionDistance.z);
+        return distance * MOVE_STRAIGHT_COST;
+
     }
 
     private PathNode GetLowestFCostPathNode(List<PathNode> pathNodeList)
@@ -136,7 +139,7 @@ public class PathfindingService : IPathfindingService
         {
             //Left
             neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z + 0));
-            if(gridPosition.z - 1 >= 0)
+            /*if(gridPosition.z - 1 >= 0)
             {
                 //Left Down
                 neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z - 1));
@@ -145,7 +148,7 @@ public class PathfindingService : IPathfindingService
             {
                 //Left Up
                 neighbourList.Add(GetNode(gridPosition.x - 1, gridPosition.z + 1));
-            }
+            }*/
             
         }
         
@@ -153,7 +156,7 @@ public class PathfindingService : IPathfindingService
         {
             //Right
             neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z + 0));
-            if(gridPosition.z - 1 >= 0)
+            /*if(gridPosition.z - 1 >= 0)
             {
                 //Right Down
                 neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z - 1));
@@ -162,7 +165,7 @@ public class PathfindingService : IPathfindingService
             {
                 //Right Up
                 neighbourList.Add(GetNode(gridPosition.x + 1, gridPosition.z + 1));
-            }
+            }*/
         }
         
         if(gridPosition.z - 1 >= 0)
