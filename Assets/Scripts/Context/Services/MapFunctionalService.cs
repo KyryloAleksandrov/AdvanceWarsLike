@@ -8,6 +8,7 @@ public interface IMapFunctionalService  //TODO - rename to MapGridSetupService
     GridSystem<GridObject> gridSystem {get;}
     Transform cellOutlinePrefab {get;}
     Transform coordinatesPrefab {get;}
+    
 
     void InitializeGrid();
     GridSystem<T> CreateGridSystem<T>(Func<GridSystem<T>, GridPosition, T> createGridObject);

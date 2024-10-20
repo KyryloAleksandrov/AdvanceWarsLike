@@ -38,12 +38,24 @@ public class GameMaster : MonoBehaviour
         pathfindingService.InitializePathfinding();
 
 
-        unitService.SpawnUnit(new GridPosition(0, 0), unitPrototype);
+        unitService.SpawnUnit(new GridPosition(0, 0), unitPrototype);   
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(Input.GetKeyDown(KeyCode.T))
+        {
+            GridPosition mouseGridPosition = mapFunctionalService.gridSystem.GetGridPosition(MouseController.GetWorldPosition());
+            GridPosition startGridPosition = new GridPosition(0, 0);
+
+            List<GridPosition> gridPositionList = pathfindingService.FindPath(startGridPosition, mouseGridPosition);
+            
+            for(int i = 0; i < gridPositionList.Count - 1; i++)
+            {
+                Debug.DrawLine(mapFunctionalService.gridSystem.GetWorldPosition(gridPositionList[i]), mapFunctionalService.gridSystem.GetWorldPosition(gridPositionList[i + 1]), Color.red, 10f);
+            }
+            Debug.Log("Path found");
+        }
     }
 }

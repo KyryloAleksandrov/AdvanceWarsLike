@@ -11,6 +11,8 @@ public class GridSystem<TGridObject>
 
     private TGridObject[,] gridObjectArray;
 
+
+    
     public GridSystem(int width, int height, float cellSize, Func<GridSystem<TGridObject>, GridPosition, TGridObject> createGridObject)
     {
         this.width = width;
@@ -29,6 +31,18 @@ public class GridSystem<TGridObject>
         }
     }
 
+    public int GetWidth()
+    {
+        return width;
+    }
+    public int GetHeight()
+    {
+        return height;
+    }
+    public float GetCellSize()
+    {
+        return cellSize;
+    }
     public Vector3 GetWorldPosition(GridPosition gridPosition)
     {
         return new Vector3(gridPosition.x, 0, gridPosition.z) * cellSize;
