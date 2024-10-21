@@ -117,6 +117,6 @@ public class MouseController : MonoBehaviour
 
         GridObject gridObject = gridSystem.GetGridObject(currentGridPosition);
 
-        Debug.Log(gridObject.ToString());
+        //Debug.Log(gridObject.ToString());
     }
 }
