@@ -16,14 +16,16 @@ public class PathfindingService : IPathfindingService
 {
     private const int MOVE_STRAIGHT_COST = 10;
     private const int MOVE_DIAGONAL_COST = 14;
+    private GridSystem<GridTile> tileSystem;
     public GridSystem<PathNode> gridSystem {get;}
     public Transform pathNodePrefab {get;}
 
-    public PathfindingService(IConfigService configService, IMapFunctionalService mapFunctionalService)
+    public PathfindingService(IConfigService configService, IMapFunctionalService mapFunctionalService, IMapGridTileService mapGridTileService)
     {
         var MapData = configService.MapData;    //TODO - create a separate config for pathfinding
         gridSystem = mapFunctionalService.CreateGridSystem<PathNode>((GridSystem<PathNode> g, GridPosition gridPosition) => new PathNode(g, gridPosition));
         pathNodePrefab = MapData.pathNodePrefab;
+        tileSystem = mapGridTileService.gridSystem;
     }
 
     public void InitializePathfinding()
@@ -80,7 +82,7 @@ public class PathfindingService : IPathfindingService
                     continue;
                 }
 
-                int tentativeGCost = currentNode.GetGCost() + CalculateDistance(currentNode.GetGridPosition(), neighbourNode.GetGridPosition());
+                int tentativeGCost = currentNode.GetGCost() + CalculateDistance(currentNode.GetGridPosition(), neighbourNode.GetGridPosition()) + tileSystem.GetGridObject(neighbourNode.GetGridPosition()).GetGridTileVisual().GetWalkCost();
                 if(tentativeGCost < neighbourNode.GetGCost())
                 {
                     neighbourNode.SetCameFromPathNode(currentNode);

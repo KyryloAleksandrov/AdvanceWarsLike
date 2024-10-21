@@ -29,7 +29,7 @@ public class ProjectContext
 
         MapFunctionalService = new MapFunctionalService(ConfigService);
         MapGridTileService = new MapGridTileService(ConfigService, MapFunctionalService);
-        PathfindingService = new PathfindingService(ConfigService, MapFunctionalService);
+        PathfindingService = new PathfindingService(ConfigService, MapFunctionalService, MapGridTileService);
 
         UnitService = new UnitService(MapFunctionalService);
         Debug.Log("Loaded successfully");

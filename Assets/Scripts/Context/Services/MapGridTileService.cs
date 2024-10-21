@@ -37,6 +37,9 @@ public class MapGridTileService : IMapGridTileService
                 GridPosition gridPosition = gridObjectArray[x,z].GetGridPosition();
 
                 Transform tileTransform = GameObject.Instantiate(tilePrefab, gridSystem.GetWorldPosition(gridPosition), Quaternion.identity);
+
+                GridTileVisual gridTileVisual = tileTransform.GetComponent<GridTileVisual>();
+                gridSystem.GetGridObject(gridPosition).SetGridTileVisual(gridTileVisual);
             }
         }
     }

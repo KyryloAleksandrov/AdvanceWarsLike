@@ -24,7 +24,7 @@ public class PathNode
 
     public int GetGCost()
     {
-        return gCost;
+        return gCost/* + ProjectContext.Instance.MapGridTileService.gridSystem.GetGridObject(gridPosition).GetGridTileVisual().GetWalkCost()*/;
     }
     public int GetHCost()
     {

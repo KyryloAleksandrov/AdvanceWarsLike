@@ -72,8 +72,8 @@ public class Prototype : MonoBehaviour
             }
             Vector3 toMove = ProjectContext.Instance.MapFunctionalService.gridSystem.GetWorldPosition(clickPosition);
             Move(toMove);
-            Debug.Log(currentPositionIndex);
-            Debug.Log(positionList.Count);
+            //Debug.Log(currentPositionIndex);
+            //Debug.Log(positionList.Count);
         }
     }
 
@@ -81,6 +81,11 @@ public class Prototype : MonoBehaviour
     {
         GridPosition target = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(targetPosition);
         List<GridPosition> pathGridPositionList = ProjectContext.Instance.PathfindingService.FindPath(gridPosition, target);
+        if(pathGridPositionList == null)
+        {
+            Debug.Log("No Path");
+            return;
+        }
         currentPositionIndex = 0;
         positionList = new List<Vector3>();
 
@@ -111,7 +116,7 @@ public class Prototype : MonoBehaviour
     private void StopMoving()
     {
         gridPosition = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(positionList[positionList.Count - 1]);
-        Debug.Log(gridPosition.ToString());
+        //Debug.Log(gridPosition.ToString());
         positionList.Clear();
     }
 }

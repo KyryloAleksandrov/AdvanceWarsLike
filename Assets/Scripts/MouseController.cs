@@ -70,6 +70,10 @@ public class MouseController : MonoBehaviour
             {
                 ClickOnHex();
             }
+            if(Input.GetMouseButtonDown(1))
+            {
+                IncreaseTileCost();
+            }
         }
     }
 
@@ -115,8 +119,27 @@ public class MouseController : MonoBehaviour
 
         GridPosition currentGridPosition = gridSystem.GetGridPosition(raycastHit.point);
 
-        GridObject gridObject = gridSystem.GetGridObject(currentGridPosition);
+        /*GridObject gridObject = gridSystem.GetGridObject(currentGridPosition);
 
-        //Debug.Log(gridObject.ToString());
+        Debug.Log(gridObject.ToString());*/
+
+        GridTile gridTile = ProjectContext.Instance.MapGridTileService.gridSystem.GetGridObject(currentGridPosition);
+        //Debug.Log(gridTile.GetGridTileVisual());
+    }
+
+    public void IncreaseTileCost()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        bool isOnGrid = Physics.Raycast(ray, out RaycastHit raycastHit, float.MaxValue, cellGridLayerMask);
+        
+        if(!isOnGrid)
+        {
+            return;
+        }
+
+        GridPosition currentGridPosition = gridSystem.GetGridPosition(raycastHit.point);
+
+        GridTile gridTile = ProjectContext.Instance.MapGridTileService.gridSystem.GetGridObject(currentGridPosition);
+        gridTile.GetGridTileVisual().IncreaseCost();
     }
 }

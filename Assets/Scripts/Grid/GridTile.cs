@@ -7,6 +7,8 @@ public class GridTile
     private GridSystem<GridTile> gridSystem;
     private GridPosition gridPosition;
 
+    private GridTileVisual gridTileVisual;
+
     public GridTile(GridSystem<GridTile> gridSystem, GridPosition gridPosition)
     {
         this.gridSystem = gridSystem;
@@ -17,4 +19,17 @@ public class GridTile
     {
         return gridPosition;
     }
+
+    public GridTileVisual GetGridTileVisual()
+    {
+        return gridTileVisual;
+    }
+    public void SetGridTileVisual(GridTileVisual gridTileVisual)
+    {
+        this.gridTileVisual = gridTileVisual;
+    }
+
+    
+
+    
 }
