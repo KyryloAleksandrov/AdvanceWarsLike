@@ -8,7 +8,7 @@ public class Prototype : MonoBehaviour
     private List<Vector3> positionList;
     private int currentPositionIndex;
 
-    private GridPosition gridPosition;
+    private GridPosition currentGridPosition;
 
     private float moveSpeed = 5f;
     private float rotationSpeed = 15f;
@@ -20,10 +20,11 @@ public class Prototype : MonoBehaviour
     void Start()
     {
         positionList = new List<Vector3>();
-        gridPosition = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(transform.position);
-        Debug.Log(gridPosition.ToString());
+        currentGridPosition = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(transform.position);
+        Debug.Log(currentGridPosition.ToString());
 
         moveRadius = 4;
+        ShowAvailablePositions();
     }
 
     // Update is called once per frame
@@ -83,8 +84,13 @@ public class Prototype : MonoBehaviour
 
     private void Move(Vector3 targetPosition)
     {
+        
         GridPosition target = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(targetPosition);
-        List<GridPosition> pathGridPositionList = ProjectContext.Instance.PathfindingService.FindPath(gridPosition, target);
+        if(!GetValidMovePositions().Contains(target))
+        {
+            return;
+        }
+        List<GridPosition> pathGridPositionList = ProjectContext.Instance.PathfindingService.FindPath(currentGridPosition, target);
         if(pathGridPositionList == null)
         {
             Debug.Log("No Path");
@@ -119,7 +125,7 @@ public class Prototype : MonoBehaviour
 
     private void StopMoving()
     {
-        gridPosition = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(positionList[positionList.Count - 1]);
+        currentGridPosition = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(positionList[positionList.Count - 1]);
         //Debug.Log(gridPosition.ToString());
         positionList.Clear();
     }
@@ -128,8 +134,38 @@ public class Prototype : MonoBehaviour
     {
         List<GridPosition> validGridPositions = new List<GridPosition>();
         
+        for(int x = -moveRadius; x <= moveRadius; x++)
+        {
+            for(int z = -moveRadius; z <= moveRadius; x++)
+            {
+                GridPosition offsetGridPosition = new GridPosition(x,z);
+                GridPosition testGridPosition = currentGridPosition + offsetGridPosition;
 
+                if (currentGridPosition == testGridPosition)
+                {
+                    //position where unit is in already
+                    continue;
+                }
+
+                if(ProjectContext.Instance.PathfindingService.GetPathLenght(currentGridPosition, testGridPosition) > moveRadius)
+                {
+                    continue;
+                }
+
+
+                validGridPositions.Add(testGridPosition);
+            }
+        }
 
         return validGridPositions;
     }
+
+    public void ShowAvailablePositions()    //continue from this point
+    {
+        foreach(var position in GetValidMovePositions())
+        {
+            ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridObject(position).GetGridOutline().HighlightToWalk();
+        }
+    }
+
 }

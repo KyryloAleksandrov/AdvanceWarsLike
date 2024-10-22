@@ -11,6 +11,7 @@ public interface IPathfindingService
 
     void InitializePathfinding();
     List<GridPosition> FindPath(GridPosition startGridPosition, GridPosition endGridPosition);
+    int GetPathLenght(GridPosition startGridPosition, GridPosition endGridPosition);
 }
 public class PathfindingService : IPathfindingService
 {
@@ -209,4 +210,18 @@ public class PathfindingService : IPathfindingService
 
         return gridPositionList;
     }
+
+    public int GetPathLenght(GridPosition startGridPosition, GridPosition endGridPosition)
+    {
+        List<GridPosition> path = FindPath(startGridPosition, endGridPosition);
+
+        int pathLength = 0;
+
+        for(int i = 0; i < path.Count; i++)
+        {
+            pathLength += tileSystem.GetGridObject(path[i]).GetGridTileVisual().GetWalkCost();
+        }
+        return pathLength;
+    }
+
 }

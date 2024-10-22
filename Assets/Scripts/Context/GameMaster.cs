@@ -55,7 +55,7 @@ public class GameMaster : MonoBehaviour
             {
                 Debug.DrawLine(mapFunctionalService.gridSystem.GetWorldPosition(gridPositionList[i]), mapFunctionalService.gridSystem.GetWorldPosition(gridPositionList[i + 1]), Color.red, 10f);
             }
-            Debug.Log("Path found");
+            Debug.Log(pathfindingService.GetPathLenght(startGridPosition, mouseGridPosition));
         }
     }
 }

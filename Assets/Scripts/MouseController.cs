@@ -124,7 +124,7 @@ public class MouseController : MonoBehaviour
         Debug.Log(gridObject.ToString());*/
 
         GridTile gridTile = ProjectContext.Instance.MapGridTileService.gridSystem.GetGridObject(currentGridPosition);
-        //Debug.Log(gridTile.GetGridTileVisual());
+        Debug.Log(gridTile.GetGridTileVisual().GetWalkCost());
     }
 
     public void IncreaseTileCost()

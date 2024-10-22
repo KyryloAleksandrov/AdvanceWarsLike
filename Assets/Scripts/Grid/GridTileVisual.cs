@@ -10,7 +10,7 @@ public class GridTileVisual : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        walkCost = 0;
+        walkCost = 1;
         ChangeMaterial();
     }
 
@@ -32,9 +32,9 @@ public class GridTileVisual : MonoBehaviour
 
     public void IncreaseCost()
     {
-        if(walkCost == 3)
+        if(walkCost == 4)
         {
-            walkCost = 0;
+            walkCost = 1;
         }
         else
         {
@@ -47,19 +47,19 @@ public class GridTileVisual : MonoBehaviour
     {
         switch(walkCost)
         {
-            case 0:
+            case 1:
                 tile.material.color = Color.gray;
                 break;
 
-            case 1:
+            case 2:
                 tile.material.color = Color.green;
                 break;
 
-            case 2:
+            case 3:
                 tile.material.color = Color.blue;
                 break;
             
-            case 3:
+            case 4:
                 tile.material.color = Color.red;
                 break;
         }
