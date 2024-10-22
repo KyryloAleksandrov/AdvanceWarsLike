@@ -9,6 +9,7 @@ public class Prototype : MonoBehaviour
     private int currentPositionIndex;
 
     private GridPosition currentGridPosition;
+    private List<GridPosition> validGridPositions;
 
     private float moveSpeed = 5f;
     private float rotationSpeed = 15f;
@@ -20,10 +21,11 @@ public class Prototype : MonoBehaviour
     void Start()
     {
         positionList = new List<Vector3>();
+        validGridPositions = new List<GridPosition>();
         currentGridPosition = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(transform.position);
-        Debug.Log(currentGridPosition.ToString());
+        //Debug.Log(currentGridPosition.ToString());
 
-        moveRadius = 4;
+        moveRadius = 5;
         ShowAvailablePositions();
     }
 
@@ -123,11 +125,17 @@ public class Prototype : MonoBehaviour
         transform.forward = Vector3.Lerp(transform.forward, GetMoveDirection(), Time.deltaTime * rotationSpeed);
     }
 
-    private void StopMoving()
+    public void StopMoving()
     {
         currentGridPosition = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(positionList[positionList.Count - 1]);
         //Debug.Log(gridPosition.ToString());
         positionList.Clear();
+        foreach(var position in validGridPositions)
+        {
+            ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridObject(position).GetGridOutline().DeHilightToWalk();
+        }
+        validGridPositions.Clear();
+        ShowAvailablePositions();
     }
 
     public List<GridPosition> GetValidMovePositions()
@@ -136,11 +144,16 @@ public class Prototype : MonoBehaviour
         
         for(int x = -moveRadius; x <= moveRadius; x++)
         {
-            for(int z = -moveRadius; z <= moveRadius; x++)
+            for(int z = -moveRadius; z <= moveRadius; z++)
             {
                 GridPosition offsetGridPosition = new GridPosition(x,z);
                 GridPosition testGridPosition = currentGridPosition + offsetGridPosition;
 
+                if(!ProjectContext.Instance.MapFunctionalService.gridSystem.IsInBounds(testGridPosition))
+                {
+                    continue;
+                }
+                
                 if (currentGridPosition == testGridPosition)
                 {
                     //position where unit is in already
@@ -162,9 +175,11 @@ public class Prototype : MonoBehaviour
 
     public void ShowAvailablePositions()    //continue from this point
     {
-        foreach(var position in GetValidMovePositions())
+        validGridPositions = GetValidMovePositions();
+        foreach(var position in validGridPositions)
         {
             ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridObject(position).GetGridOutline().HighlightToWalk();
+            //Debug.Log(position.ToString());
         }
     }
 

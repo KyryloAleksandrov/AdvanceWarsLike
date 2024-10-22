@@ -27,6 +27,7 @@ public class GridSystem<TGridObject>
             {
                 GridPosition gridPosition = new GridPosition(x, z);
                 gridObjectArray[x, z] = createGridObject(this, gridPosition);
+                //Debug.Log(gridObjectArray[x,z]);
             }
         }
     }

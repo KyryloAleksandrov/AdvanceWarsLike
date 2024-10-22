@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour
 {
     [SerializeField] private Transform unitPrototype;
+    private Prototype prototype;
 
     public static GameMaster Instance;
 
@@ -37,7 +38,7 @@ public class GameMaster : MonoBehaviour
         mapGridTileService.InitializeTiles();
         pathfindingService.InitializePathfinding();
 
-
+        prototype = unitPrototype.GetComponent<Prototype>();
         unitService.SpawnUnit(new GridPosition(0, 0), unitPrototype);   
     }
 
@@ -57,5 +58,7 @@ public class GameMaster : MonoBehaviour
             }
             Debug.Log(pathfindingService.GetPathLenght(startGridPosition, mouseGridPosition));
         }
+
+        
     }
 }
