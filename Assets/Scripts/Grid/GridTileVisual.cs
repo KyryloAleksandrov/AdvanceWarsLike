@@ -32,13 +32,13 @@ public class GridTileVisual : MonoBehaviour
 
     public void IncreaseCost()
     {
-        if(walkCost == 60)
+        if(walkCost == 3)
         {
             walkCost = 0;
         }
         else
         {
-            walkCost = walkCost + 20; 
+            walkCost = walkCost + 1; 
         }
         ChangeMaterial();
     }
@@ -51,15 +51,15 @@ public class GridTileVisual : MonoBehaviour
                 tile.material.color = Color.gray;
                 break;
 
-            case 20:
+            case 1:
                 tile.material.color = Color.green;
                 break;
 
-            case 40:
+            case 2:
                 tile.material.color = Color.blue;
                 break;
             
-            case 60:
+            case 3:
                 tile.material.color = Color.red;
                 break;
         }

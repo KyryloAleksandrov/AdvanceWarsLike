@@ -82,7 +82,8 @@ public class PathfindingService : IPathfindingService
                     continue;
                 }
 
-                int tentativeGCost = currentNode.GetGCost() + CalculateDistance(currentNode.GetGridPosition(), neighbourNode.GetGridPosition()) + tileSystem.GetGridObject(neighbourNode.GetGridPosition()).GetGridTileVisual().GetWalkCost();
+                int tentativeGCost = currentNode.GetGCost() + CalculateDistance(currentNode.GetGridPosition(), neighbourNode.GetGridPosition());
+                tentativeGCost *= tileSystem.GetGridObject(neighbourNode.GetGridPosition()).GetGridTileVisual().GetWalkCost();
                 if(tentativeGCost < neighbourNode.GetGCost())
                 {
                     neighbourNode.SetCameFromPathNode(currentNode);

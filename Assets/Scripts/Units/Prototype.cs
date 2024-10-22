@@ -14,12 +14,16 @@ public class Prototype : MonoBehaviour
     private float rotationSpeed = 15f;
     private float stoppingDistance = 0.1f;
     private float rotatingStoppingDistance = 0.5f;
+
+    private int moveRadius;
     // Start is called before the first frame update
     void Start()
     {
         positionList = new List<Vector3>();
         gridPosition = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(transform.position);
         Debug.Log(gridPosition.ToString());
+
+        moveRadius = 4;
     }
 
     // Update is called once per frame
@@ -118,5 +122,14 @@ public class Prototype : MonoBehaviour
         gridPosition = ProjectContext.Instance.MapFunctionalService.gridSystem.GetGridPosition(positionList[positionList.Count - 1]);
         //Debug.Log(gridPosition.ToString());
         positionList.Clear();
+    }
+
+    public List<GridPosition> GetValidMovePositions()
+    {
+        List<GridPosition> validGridPositions = new List<GridPosition>();
+        
+
+
+        return validGridPositions;
     }
 }
