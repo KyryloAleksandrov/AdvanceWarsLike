@@ -88,4 +88,35 @@ public class GridSystem<TGridObject>
             }
         }
     }
+
+    public List<GridPosition> GetNeighbourPositions(GridPosition gridPosition)
+    {
+        List<GridPosition> neighbourPositions = new List<GridPosition>();
+
+        GridPosition positionUp = new GridPosition(gridPosition.x + 0, gridPosition.z + 1);
+        if(IsInBounds(positionUp))
+        {
+            neighbourPositions.Add(positionUp);
+        }
+
+        GridPosition positionDown = new GridPosition(gridPosition.x + 0, gridPosition.z - 1);
+        if(IsInBounds(positionDown))
+        {
+            neighbourPositions.Add(positionDown);
+        }
+
+        GridPosition positionLeft = new GridPosition(gridPosition.x - 1, gridPosition.z + 0);
+        if(IsInBounds(positionLeft))
+        {
+            neighbourPositions.Add(positionLeft);
+        }
+
+        GridPosition positionRight = new GridPosition(gridPosition.x + 1, gridPosition.z + 0);
+        if(IsInBounds(positionRight))
+        {
+            neighbourPositions.Add(positionRight);
+        }
+
+        return neighbourPositions;
+    }
 }

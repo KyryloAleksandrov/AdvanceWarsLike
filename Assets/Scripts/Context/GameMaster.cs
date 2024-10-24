@@ -1,10 +1,13 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
     [SerializeField] private Transform unitPrototype;
+    [SerializeField] private Transform enemyPrototype;
     private Prototype prototype;
 
     public static GameMaster Instance;
@@ -39,7 +42,8 @@ public class GameMaster : MonoBehaviour
         pathfindingService.InitializePathfinding();
 
         prototype = unitPrototype.GetComponent<Prototype>();
-        unitService.SpawnUnit(new GridPosition(0, 0), unitPrototype);   
+        unitService.SpawnUnit(new GridPosition(0, 0), unitPrototype);
+        unitService.SpawnUnit(new GridPosition(3, 3), enemyPrototype);   
     }
 
     // Update is called once per frame
@@ -59,6 +63,31 @@ public class GameMaster : MonoBehaviour
             Debug.Log(pathfindingService.GetPathLenght(startGridPosition, mouseGridPosition));
         }
 
-        
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            LoadSceneSeparately("Battle");
+        }
+
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            UnloadAdditiveScene("Battle");
+        }
+    }
+
+    public void LoadSceneSeparately(string sceneName)
+    {
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive).completed += OnSceneLoaded;
+    }
+
+    public void OnSceneLoaded(AsyncOperation operation)
+    {
+        Scene newScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
+        Debug.Log(newScene.name);
+        SceneManager.SetActiveScene(newScene);
+    }
+
+    public void UnloadAdditiveScene(string sceneName)
+    {
+        SceneManager.UnloadSceneAsync(sceneName);
     }
 }

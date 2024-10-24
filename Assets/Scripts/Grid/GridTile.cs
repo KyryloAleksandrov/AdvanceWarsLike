@@ -6,6 +6,7 @@ public class GridTile
 {   
     private GridSystem<GridTile> gridSystem;
     private GridPosition gridPosition;
+    private Unit unit;
 
     private GridTileVisual gridTileVisual;
 
@@ -29,6 +30,14 @@ public class GridTile
         this.gridTileVisual = gridTileVisual;
     }
 
+    public Unit GetUnit()
+    {
+        return this.unit;
+    }
+    public void SetUnit(Unit unit)
+    {
+        this.unit = unit;
+    }
     
 
     

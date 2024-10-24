@@ -70,10 +70,10 @@ public class MouseController : MonoBehaviour
             {
                 ClickOnHex();
             }
-            if(Input.GetMouseButtonDown(1))
+            /*if(Input.GetMouseButtonDown(1))
             {
                 IncreaseTileCost();
-            }
+            }*/
         }
     }
 

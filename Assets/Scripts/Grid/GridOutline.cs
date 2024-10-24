@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class GridOutline : MonoBehaviour
 {
-    [SerializeField] MeshRenderer highlighted;
-    [SerializeField] MeshRenderer highlightedToWalk;
+    [SerializeField] private MeshRenderer highlighted;
+    [SerializeField] private MeshRenderer highlightedToWalk;
+    [SerializeField] private MeshRenderer highlightedToFight;
     private GridObject gridObject; 
     // Start is called before the first frame update
     void Start()
     {
         DeHighlight();
         DeHilightToWalk();
+        DeHilightToFight();
     }
 
     // Update is called once per frame
@@ -42,4 +44,14 @@ public class GridOutline : MonoBehaviour
     {
         highlightedToWalk.enabled = false;
     }
+
+    public void HighlightToFight()
+    {
+        highlightedToFight.enabled = true;
+    }
+    public void DeHilightToFight()
+    {
+        highlightedToFight.enabled = false;
+    }
+
 }
