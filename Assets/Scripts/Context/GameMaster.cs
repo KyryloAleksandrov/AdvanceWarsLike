@@ -76,15 +76,10 @@ public class GameMaster : MonoBehaviour
 
     public void LoadSceneSeparately(string sceneName)
     {
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive).completed += OnSceneLoaded;
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
     }
 
-    public void OnSceneLoaded(AsyncOperation operation)
-    {
-        Scene newScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1);
-        Debug.Log(newScene.name);
-        SceneManager.SetActiveScene(newScene);
-    }
+    
 
     public void UnloadAdditiveScene(string sceneName)
     {

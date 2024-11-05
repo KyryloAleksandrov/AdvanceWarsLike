@@ -23,6 +23,8 @@ public class ProjectContext
 
     public IUnitService UnitService {get; private set;}
 
+    public IBattleService BattleService {get; private set;}
+
     public void Initialize(MapConfig mapConfig)
     {
         ConfigService = new ConfigService(mapConfig);
@@ -32,6 +34,8 @@ public class ProjectContext
         PathfindingService = new PathfindingService(ConfigService, MapFunctionalService, MapGridTileService);
 
         UnitService = new UnitService(MapFunctionalService);
+
+        BattleService = new BattleService();
         Debug.Log("Loaded successfully");
     }
 }

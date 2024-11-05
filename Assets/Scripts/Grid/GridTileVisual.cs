@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GridTileVisual : MonoBehaviour
 {
-    [SerializeField] private int walkCost;
+    [SerializeField] private int walkCost;//TODO - move to gridtile
     [SerializeField] private MeshRenderer tile;
 
     // Start is called before the first frame update
