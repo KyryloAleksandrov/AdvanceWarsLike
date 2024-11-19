@@ -6,6 +6,7 @@ using UnityEngine;
 public interface IUnitService
 {
     void SpawnUnit(GridPosition gridPosition, Transform unitTransform);
+    //TODO - add unit selection
 }
 public class UnitService : IUnitService
 {
